@@ -4,6 +4,7 @@ const poke2Tipo = document.querySelector('#tipoRival');
 const poke2Ataque = document.querySelector('#ataqueRival');
 
 const imgPoke = document.querySelector('#poke');
+
 const namePoke= document.querySelector('#nombrePoke-propio');
 const pokeTipo= document.querySelector('#tipoPropio');
 const pokeAtaque = document.querySelector('#ataquePropio');
@@ -12,8 +13,7 @@ const btnPelar =document.querySelector('#combate');
 const input=document.querySelector('#input');
 const btnElegir=document.querySelector('#btn-poke');
 
-
-
+const btnPelear  = document.querySelector('#combate');
 
 
 const getNumRandom = () => {
@@ -24,8 +24,11 @@ const getNumRandom = () => {
   }
 
 const obtenerPokePropio = ()=>{
+
     const num=input.value;
     alert(num);
+
+
     axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`).then((res)=>{
         console.log(res);
         return res.data
@@ -53,9 +56,12 @@ const obtenerPokeRival = () =>{
         namePoke2.innerHTML = res.name;
         poke2Ataque.innerHTML = res.stats[0].base_stat;
     })
+
+    console.log(imgPoke2);
 }
 
 const combate = ()=>{
+
     const ataqueRival=parseInt(poke2Ataque.textContent);
     const ataquePropio=parseInt(pokeAtaque.textContent);
     console.log(ataquePropio);
@@ -64,3 +70,7 @@ const combate = ()=>{
 window.addEventListener('load', obtenerPokeRival);
 btnElegir.addEventListener('click', obtenerPokePropio);
 btnPelear.addEventListener('click', combate);
+
+
+
+
