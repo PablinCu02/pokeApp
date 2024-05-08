@@ -3,6 +3,18 @@ const namePoke2 = document.querySelector('#nombrePoke-rival');
 const poke2Tipo = document.querySelector('#tipoRival');
 const poke2Ataque = document.querySelector('#ataqueRival');
 
+const imgPoke = document.querySelector('#poke');
+const namePoke= document.querySelector('#nombrePoke-propio');
+const pokeTipo= document.querySelector('#tipoPropio');
+const pokeAtaque = document.querySelector('#ataquePropio');
+const btnPelar =document.querySelector('#combate');
+
+const input=document.querySelector('#input');
+const btnElegir=document.querySelector('#btn-poke');
+
+
+
+
 
 const getNumRandom = () => {
     let min = Math.ceil(0);
@@ -12,15 +24,27 @@ const getNumRandom = () => {
   }
 
 const obtenerPokePropio = ()=>{
-
+    const num=input.value;
+    alert(num);
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`).then((res)=>{
+        console.log(res);
+        return res.data
+    }).then((res)=>{
+        console.log(res);
+        imgPoke.src = res.sprites.back_default;
+        pokeTipo.innerHTML = res.types[0].type.name;
+        namePoke.innerHTML = res.name;
+        pokeAtaque.innerHTML = res.stats[0].base_stat;
+    })
 }
+
 
 const obtenerPokeRival = () =>{
 
     const numPokeRival = getNumRandom();
 
     axios.get(`https://pokeapi.co/api/v2/pokemon/${numPokeRival}`).then((res)=>{
-
+        console.log(res);
         return res.data
     }).then((res)=>{
         console.log(res);
@@ -32,10 +56,11 @@ const obtenerPokeRival = () =>{
 }
 
 const combate = ()=>{
-    
+    const ataqueRival=parseInt(poke2Ataque.textContent);
+    const ataquePropio=parseInt(pokeAtaque.textContent);
+    console.log(ataquePropio);
 }
 
-window.addEventListener('load', obtenerPokeRival)
-
-
-
+window.addEventListener('load', obtenerPokeRival);
+btnElegir.addEventListener('click', obtenerPokePropio);
+btnPelear.addEventListener('click', combate);
