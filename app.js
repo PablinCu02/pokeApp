@@ -70,11 +70,11 @@ const combate = () => {
     const ataqueRival = parseInt(poke2Ataque.textContent);
     const ataquePropio = parseInt(pokeAtaque.textContent);
     if (ataquePropio > ataqueRival) {
-        alert("¡Ganaste el enfrentamiento!");
+        alert("Aaaaaa prro ganaste el combate!");
     } else if (ataqueRival > ataquePropio) {
-        alert("¡Perdiste el enfrentamiento!");
+        alert("Tssss como así que te ganó?!");
     } else {
-        alert("¡Es un empate!");
+        alert("¡Empateeee!");
     }
 };
 
